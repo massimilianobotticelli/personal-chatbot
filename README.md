@@ -2,7 +2,7 @@
 
 This is a simple Streamlit-based chatbot that uses Google Gemini Pro as its language model. It's designed to be easily customizable with your own personal information and deployed as an open-source project.
 
-**See a live example of this chatbot in action:** [LLMassi](https://massimilianobotticelli.me/llmassi/)
+**See a live example of this chatbot in action:** [LLMassi](https://massimilianobotticelli.me/llmassi)
 
 ## Features
 
