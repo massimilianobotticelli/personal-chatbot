@@ -1,3 +1,40 @@
+"""
+This module implements a Streamlit-based chatbot application that uses 
+Google Gemini Pro as its language model. It allows users to have 
+interactive conversations with the chatbot, which is personalized with 
+information from a YAML file and guided by a customizable prompt.
+
+The chatbot leverages LangChain for prompt management and interaction with 
+the Gemini Pro model. It also uses Streamlit for creating the user 
+interface and managing chat history.
+
+Key features:
+
+* Personalized responses based on user-provided information.
+* Persistent chat history within a session.
+* Customizable prompt for guiding the chatbot's behavior.
+* Easy deployment using Streamlit.
+* Customizable UI with logo, CSS, and avatar icons.
+
+Usage:
+
+1. Set up a Google Cloud project with Gemini Pro enabled and obtain an API key.
+2. Install the required dependencies: `pip install -r requirements.txt`
+3. Configure the chatbot by updating `information.yaml`, `prompt.txt`, and `config.py`.
+4. Run the chatbot using Streamlit: `streamlit run app.py`
+
+Customization:
+
+* Personalize responses by modifying `information.yaml`.
+* Fine-tune the chatbot's behavior by editing `prompt.txt`.
+* Customize the UI by replacing the logo, avatar icons, and updating the CSS.
+
+Author: Massimiliano Botticelli
+Website: https://massimilianobotticelli.me/
+"""
+
+# ... (rest of your code)
+
 # Import necessary libraries
 import streamlit as st
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -13,12 +50,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Load personal context from YAML file
-with open(config.INFO_PATH, "r") as file:
+with open(config.INFO_PATH, "r", encoding="utf-8") as file:
     dict_personal_context = yaml.safe_load(file)
     personal_context = yaml.dump(dict_personal_context)
 
 # Load prompt message from file
-with open(config.PROMPT_PATH, "r") as file:
+with open(config.PROMPT_PATH, "r", encoding="utf-8") as file:
     prompt_message = file.read()
 
 # Configure Streamlit page settings
@@ -38,15 +75,17 @@ st.set_page_config(
 st.image(config.LOGO_PATH, width=600)
 
 # Load and apply custom CSS
-with open(config.CSS_PATH, "r") as f:
+with open(config.CSS_PATH, "r", encoding="utf-8") as f:
     st.markdown(f.read(), unsafe_allow_html=True)
 
 # Add a link to your website
-st.markdown(f'<div class="container"><a href="{config.WEBSITE_URL}" class="website-link">Visit my website</a></div>', 
+st.markdown(f"""
+            <div class="container"><a href="{config.WEBSITE_URL}"
+            class="website-link">Visit my website</a></div>""",
             unsafe_allow_html=True)
 
 # Display disclaimer in an expander
-with open(config.DISCLAIMER_PATH, "r") as f:
+with open(config.DISCLAIMER_PATH, "r", encoding="utf-8") as f:
     disclaimer_text = f.read()
 
 with st.expander("ℹ️ Disclaimer"):
@@ -112,14 +151,14 @@ if prompt := st.chat_input("Ask me something 🙂"):
         st.markdown(prompt)
 
     # Generate response and add it to chat history
-    chat_config = {"configurable": {"session_id": "any"}} 
+    chat_config = {"configurable": {"session_id": "any"}}
 
     try:
         response = chain_with_history.invoke({"question": prompt}, chat_config).content
     except Exception as e:  # Catch any exceptions during response generation
         print(f"Error generating response: {e}")  # Print error for debugging
         response = config.WAITING_MESSAGE  # Display a waiting message
-    
+
     st.session_state.messages.append({"role": "assistant", "content": response})
     with st.chat_message("assistant", avatar=config.SYSTEM_AVATAR):
         st.markdown(response)
