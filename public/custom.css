@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+
+.container .website-link {
+    font-size: 1em;  /* Slightly larger font size */
+    display: flex;
+    line-height: 1.2; 
+    color: #FFF;
+    text-decoration: none !important;
+    margin-top: 10px;  /* A bit more margin-top */
+    margin-bottom: 20px;  /* A bit more margin-top */
+    transition: color 0.3s ease; 
+    padding: 8px 15px; /* Add some padding */
+    border: 2px solid #FFF; /* Add a border */
+    border-radius: 5px; /* Round the corners slightly */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */     
+
+    &:hover {
+      color: #000; /* Use your $main color on hover */ 
+      background-color: #FFF; /* White background on hover */
+    }
+  } 
+
+</style>

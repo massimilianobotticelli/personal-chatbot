@@ -1,0 +1,5 @@
+This chatbot is an AI designed to mimic my communication style based on publicly available information.
+It is intended for entertainment and informational purposes only. The chatbot's responses may not always be accurate
+or reflect my actual views. I am not responsible for any actions taken based on the chatbot's responses.
+Please use this chatbot responsibly and ethically.
+This chatbot utilizes Google's Gemini API. Your interactions may be used to improve Google's AI models.
