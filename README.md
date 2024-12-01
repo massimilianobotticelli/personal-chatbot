@@ -25,7 +25,7 @@ This is a simple Streamlit-based chatbot that uses Google Gemini Pro as its lang
 
 1. **Clone the repository:**
    ```bash
-   git clone [invalid URL removed]
+   git clone https://github.com/massimilianobotticelli/personal-chatbot
    ```
 
 2. **Install dependencies using Poetry:**
